@@ -51,6 +51,23 @@ type GithubEvent = {
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const asset = (path: string) => `${basePath}${path}`;
+const hireSignals = [
+  {
+    title: "Ships AI infrastructure, not demos",
+    detail: "Forge and RepoMind focus on runtime control, retrieval quality, validation, security, and backend reliability.",
+    metric: "Production systems",
+  },
+  {
+    title: "Founder operating context",
+    detail: "Ex-CTO with ₹1Cr+ pre-seed fundraise signal, product judgment, and engineering ownership.",
+    metric: "Ex-CTO",
+  },
+  {
+    title: "Open-source execution",
+    detail: "Recent PR work across LlamaIndex, LiteLLM, Open WebUI, and review work in OpenClaw.",
+    metric: "OSS contributor",
+  },
+];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -165,7 +182,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               {project.gallery.map((image, index) => (
                 <div key={image} className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.03]">
                   <Image
-                    src={image}
+                    src={asset(image)}
                     alt={`${project.name} screenshot ${index + 1}`}
                     width={1400}
                     height={875}
@@ -258,7 +275,7 @@ function ProjectCard({ project, featured, onOpen }: { project: Project; featured
       <div className={featured ? "grid lg:grid-cols-[1.1fr_0.9fr]" : ""}>
         <div className="relative overflow-hidden bg-black/30">
           <Image
-            src={project.image}
+            src={asset(project.image)}
             alt={`${project.name} project screenshot`}
             width={1400}
             height={875}
@@ -340,14 +357,53 @@ function ExpertiseSection() {
                 <h3 className="font-semibold text-white">{group.title}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span key={item} className="rounded-md border border-white/10 bg-black/25 px-2.5 py-1.5 text-xs text-slate-300">
+                    <motion.span
+                      key={item}
+                      whileHover={{ y: -2, scale: 1.03 }}
+                      className="rounded-md border border-white/10 bg-black/25 px-2.5 py-1.5 text-xs text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                    >
                       {item}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
             );
           })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyHireMe() {
+  return (
+    <section className="px-5 py-16 sm:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_15%_10%,rgba(121,255,225,0.16),transparent_30%),linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.025))] p-5 shadow-glow sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <SectionLabel>Why Hire Me</SectionLabel>
+              <h2 className="text-3xl font-semibold sm:text-4xl">AI infrastructure judgment with builder urgency.</h2>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {hireSignals.map((signal, index) => (
+                <motion.div
+                  key={signal.title}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.04 }}
+                  className="rounded-xl border border-white/10 bg-black/25 p-4 backdrop-blur"
+                >
+                  <div className="mb-4 inline-flex rounded-full border border-signal/25 bg-signal/10 px-2.5 py-1 text-xs text-signal">
+                    {signal.metric}
+                  </div>
+                  <h3 className="font-semibold text-white">{signal.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-400">{signal.detail}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -532,15 +588,25 @@ function GithubPanel() {
 function FloatingAssistant() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [answer, setAnswer] = useState(
-    "Ask about Ratish, Forge, RepoMind AI, open source contributions, skills, experience, or contact.",
-  );
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "I answer from local portfolio data. Ask about Ratish, Forge, RepoMind AI, open source, skills, experience, or contact.",
+    },
+  ]);
 
   function ask(nextQuery: string) {
+    if (!nextQuery.trim()) return;
     setQuery(nextQuery);
     const normalized = nextQuery.toLowerCase();
     const match = assistantKnowledge.find((item) => item.triggers.some((trigger) => normalized.includes(trigger)));
-    setAnswer(match?.answer || "I only answer from local portfolio data. Try asking about Forge, RepoMind AI, open source, skills, experience, or contact.");
+    const response = match?.answer || "I only answer from local portfolio data. Try asking about Forge, RepoMind AI, open source, skills, experience, or contact.";
+    setMessages((current) => [
+      ...current.slice(-4),
+      { role: "user", text: nextQuery },
+      { role: "assistant", text: response },
+    ]);
+    setQuery("");
   }
 
   return (
@@ -561,7 +627,20 @@ function FloatingAssistant() {
                 <X className="h-4 w-4" />
               </button>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black/30 p-3 text-sm leading-6 text-slate-300">{answer}</div>
+            <div className="max-h-72 space-y-3 overflow-y-auto rounded-lg border border-white/10 bg-black/30 p-3">
+              {messages.map((message, index) => (
+                <div
+                  key={`${message.role}-${index}`}
+                  className={`rounded-lg px-3 py-2 text-sm leading-6 ${
+                    message.role === "user"
+                      ? "ml-8 bg-signal text-ink"
+                      : "mr-8 bg-white/[0.055] text-slate-300"
+                  }`}
+                >
+                  {message.text}
+                </div>
+              ))}
+            </div>
             <div className="mt-3 flex gap-2">
               <input
                 value={query}
@@ -612,7 +691,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-ink">
-      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_22%_12%,rgba(121,255,225,0.1),transparent_24%),radial-gradient(circle_at_82%_8%,rgba(106,167,255,0.12),transparent_28%),linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:auto,auto,64px_64px,64px_64px]" />
       <nav className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-ink/80 px-5 py-3 backdrop-blur-xl sm:px-8">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <a href="#top" className="flex items-center gap-2 text-sm font-semibold">
@@ -633,7 +712,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.78fr] lg:items-center">
           <div>
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1 text-sm text-slate-300">
-              <Sparkles className="h-4 w-4 text-signal" /> Ex-CTO • ₹1Cr+ Fundraise • AI Infrastructure Engineer
+              <Sparkles className="h-4 w-4 text-signal" /> Forge creator • Ex-CTO • ₹1Cr+ Fundraise • AI Infrastructure Engineer
             </div>
             <h1 className="max-w-4xl text-5xl font-semibold tracking-normal text-white sm:text-6xl lg:text-7xl">
               Ratish Oberoi
@@ -642,7 +721,7 @@ export default function Home() {
               Builder of AI infrastructure, agent systems, RAG platforms, and production backend systems.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 text-sm text-slate-300">
-              {["AI Infrastructure Engineer", "Ex-CTO", "₹1Cr+ Pre-Seed Fundraise", "Open Source Contributor"].map((chip) => (
+              {["AI Infrastructure Engineer", "Forge Creator", "Ex-CTO", "₹1Cr+ Pre-Seed Fundraise", "Open Source Contributor"].map((chip) => (
                 <span key={chip} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1">
                   {chip}
                 </span>
@@ -667,7 +746,7 @@ export default function Home() {
             <div className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(circle_at_50%_15%,rgba(121,255,225,0.24),transparent_55%)] blur-xl" />
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] p-3 shadow-glow">
               <Image
-                src="/profile/ratish-oberoi.jpg"
+                src={asset("/profile/ratish-oberoi.jpg")}
                 alt="Ratish Oberoi"
                 width={540}
                 height={1200}
@@ -702,6 +781,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <WhyHireMe />
 
       <section id="projects" className="px-5 py-20 sm:px-8">
         <div className="mx-auto max-w-7xl">

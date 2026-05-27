@@ -32,3 +32,18 @@ Buttons and modal close controls include labels where needed. Color contrast is 
 
 - Mermaid increases client bundle size, but it enables local architecture diagrams without external services.
 - GitHub REST API can be rate-limited, so the UI includes local fallbacks.
+
+## Image Rendering Fix
+
+Production browser inspection found broken root-relative image requests:
+
+- `https://ratishoberoi.github.io/profile/ratish-oberoi.jpg` -> 404
+- `https://ratishoberoi.github.io/screenshots/forge/control-center.png` -> 404
+- `https://ratishoberoi.github.io/screenshots/repomind/architecture-view.png` -> 404
+
+The deployed files existed under the GitHub Pages project path:
+
+- `https://ratishoberoi.github.io/ratish-ai-portfolio/profile/ratish-oberoi.jpg` -> 200
+- `https://ratishoberoi.github.io/ratish-ai-portfolio/screenshots/forge/control-center.png` -> 200
+
+Root cause: rendered image `src` values did not include the GitHub Pages base path. Fix: all rendered portfolio image URLs now use the local `asset()` helper before they are passed to `next/image`.
