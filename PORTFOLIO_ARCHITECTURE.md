@@ -6,7 +6,7 @@ Shows Ratish Oberoi as an AI Infrastructure Engineer with Ex-CTO and ₹1 Cr+ pr
 
 ## 2. About
 
-Positions Ratish as a senior AI systems builder. Avoids generic biography language and emphasizes infrastructure, local-first AI, backend reliability, and repository intelligence.
+Positions Ratish as an AI Infrastructure Engineer and builder of AI infrastructure and agent systems. Avoids generic biography language and emphasizes infrastructure, local-first AI, backend reliability, and repository intelligence.
 
 ## 3. Featured Projects
 
