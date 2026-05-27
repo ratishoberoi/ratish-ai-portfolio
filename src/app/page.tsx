@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowUpRight, Mail, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { ArchitectureGallery } from "@/components/portfolio/ArchitectureGallery";
 import { ExpertiseClusters } from "@/components/portfolio/ExpertiseClusters";
 import { FadeReveal } from "@/components/portfolio/FadeReveal";
 import { GithubSignal } from "@/components/portfolio/GithubSignal";
@@ -17,13 +18,6 @@ import { projects } from "@/lib/portfolio-data";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const asset = (path: string) => `${basePath}${path}`;
-
-const timeline = [
-  ["Founder context", "Ex-CTO with ₹1Cr+ pre-seed fundraise context."],
-  ["Repository intelligence", "RepoMind AI: AST, RAG, architecture, security review."],
-  ["Autonomous runtime", "Forge: local-first agent infrastructure for software work."],
-  ["Open source", "LlamaIndex, LiteLLM, Open WebUI, OpenClaw contribution signal."],
-];
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -42,7 +36,7 @@ export default function Home() {
             Ratish Oberoi
           </a>
           <div className="hidden items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 md:flex">
-            {["Systems", "Projects", "Expertise", "OSS", "Contact"].map((item) => (
+            {["Systems", "Architecture", "Projects", "Expertise", "OSS", "Contact"].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
                 {item}
               </a>
@@ -61,10 +55,10 @@ export default function Home() {
               <Sparkles className="h-4 w-4 text-signal" /> Ex-CTO • ₹1Cr+ Pre-Seed • Open Source
             </div>
             <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.9] tracking-tight text-white sm:text-7xl lg:text-8xl">
-              Building AI systems that build software.
+              Local-first AI infrastructure for autonomous engineering.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              Ratish Oberoi designs agent architectures, repository intelligence platforms, RAG systems, model-serving infrastructure, and autonomous engineering runtimes.
+              Ratish Oberoi designs repository intelligence, RAG systems, model-serving runtimes, validation loops, and agent architectures for software engineering workflows.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#systems" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
@@ -100,8 +94,8 @@ export default function Home() {
 
       <section id="systems" className="relative z-10 rounded-t-[3rem] border-t border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Systems view" title="Infrastructure over animation.">
-            The portfolio is structured around how AI systems are designed: runtime, retrieval, repository context, validation, and open-source proof.
+          <SectionHeading kicker="Systems view" title="Architecture before tool names.">
+            The portfolio is organized around concrete system surfaces: runtime, retrieval, repository context, validation, and open-source proof.
           </SectionHeading>
           <div className="grid gap-5 lg:grid-cols-4">
             {[
@@ -119,10 +113,19 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="architecture" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading kicker="Architecture gallery" title="Show the engineering thinking.">
+            Expandable architecture cards for Forge runtime design, RepoMind pipeline design, RAG retrieval, agent validation, and repository intelligence.
+          </SectionHeading>
+          <ArchitectureGallery />
+        </div>
+      </section>
+
       <section id="projects" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Flagship work" title="Product-grade AI infrastructure.">
-            Forge is the flagship. RepoMind shows repository intelligence depth. Both open into case-study modals instead of dumping walls of text.
+          <SectionHeading kicker="Case studies" title="Forge and RepoMind as systems.">
+            Premium case studies with architecture-first modals, large screenshots, design decisions, and direct GitHub links.
           </SectionHeading>
           <ProjectShowcase projects={projects} />
         </div>
@@ -130,8 +133,8 @@ export default function Home() {
 
       <section id="expertise" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-white/[0.03] px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Expertise clusters" title="AI infrastructure stack.">
-            Scannable technology clusters for hiring managers and engineers evaluating systems fit.
+          <SectionHeading kicker="Infrastructure domains" title="Engineering clusters, not tool lists.">
+            Each domain is framed around the system responsibility it supports, not just the technologies involved.
           </SectionHeading>
           <ExpertiseClusters />
         </div>
@@ -146,27 +149,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="timeline" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Trajectory" title="From founder context to AI systems.">
-            A concise timeline of the engineering narrative behind the portfolio.
-          </SectionHeading>
-          <div className="grid gap-4 md:grid-cols-4">
-            {timeline.map(([title, detail], index) => (
-              <motion.div key={title} whileHover={{ y: -6 }} transition={{ delay: index * 0.03 }} className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-signal">0{index + 1}</div>
-                  <h3 className="mt-8 text-xl font-semibold text-white">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-400">{detail}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="github" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
+      <section id="github" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionHeading kicker="GitHub activity" title="Build signal, not vanity metrics.">
-            Recent repositories, contribution density, and public activity are fetched from GitHub with local fallbacks.
+            Repositories, OSS contributions, contribution density, and public engineering activity are fetched from GitHub with local fallbacks.
           </SectionHeading>
           <GithubSignal />
         </div>
@@ -174,23 +160,35 @@ export default function Home() {
 
       <section id="contact" className="relative z-10 px-5 pb-24 sm:px-8">
         <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-glow sm:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
             <div>
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-signal">Contact</p>
               <h2 className="max-w-3xl text-4xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-6xl">
-                Remote AI infrastructure, agent systems, RAG, backend AI.
+                Currently exploring production AI infrastructure roles.
               </h2>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <a href="mailto:ratishoberoi3993@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
-                <Mail className="h-4 w-4" /> Email
-              </a>
-              <a href="https://github.com/ratishoberoi" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white">
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/ratishoberoi" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white">
-                LinkedIn
-              </a>
+            <div>
+              <div className="mb-5 grid gap-2 sm:grid-cols-2">
+                {["AI Infrastructure Engineering", "Agent Systems", "LLMOps", "RAG Platforms", "Backend AI Systems"].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-slate-300">
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="mailto:ratishoberoi3993@gmail.com" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
+                  <Mail className="h-4 w-4" /> Email
+                </a>
+                <a href="https://github.com/ratishoberoi" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white">
+                  GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/ratishoberoi" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white">
+                  LinkedIn
+                </a>
+                <a href={asset("/resume/Ratish-Oberoi-Resume.md")} className="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white">
+                  Resume
+                </a>
+              </div>
             </div>
           </div>
         </div>

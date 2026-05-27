@@ -38,7 +38,7 @@ export function PortfolioAssistant() {
       <AnimatePresence>
         {open ? (
           <motion.div
-            className="mb-3 w-[min(94vw,430px)] rounded-[1.5rem] border border-white/10 bg-[#070a10]/95 p-4 shadow-2xl backdrop-blur-xl"
+            className="mb-3 w-[min(92vw,380px)] rounded-[1.5rem] border border-white/10 bg-[#070a10]/95 p-4 shadow-2xl backdrop-blur-xl"
             initial={{ opacity: 0, y: 18, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.96 }}
@@ -90,8 +90,8 @@ export function PortfolioAssistant() {
         ) : null}
       </AnimatePresence>
       {!open ? (
-        <button onClick={() => setOpen(true)} className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-ink shadow-2xl transition hover:scale-[1.02]">
-          <MessageSquare className="h-4 w-4" /> Ask Portfolio
+        <button onClick={() => setOpen(true)} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/90 px-3 py-2 text-xs font-semibold text-ink shadow-2xl transition hover:scale-[1.02]">
+          <MessageSquare className="h-3.5 w-3.5" /> Ask
         </button>
       ) : null}
     </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Check, Cpu, Layers3, X } from "lucide-react";
+import { ArrowUpRight, Check, Cpu, Layers3, ShieldCheck, X } from "lucide-react";
 import { useState } from "react";
 import type { Project } from "@/lib/portfolio-data";
 
@@ -35,6 +35,30 @@ function ArchitectureStack({ project }: { project: Project }) {
 }
 
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const sections =
+    project.name === "Forge"
+      ? [
+          ["Problem", project.problem],
+          ["Architecture", project.architecture],
+          ["Runtime", "Local model roles are treated as runtime resources. Forge separates repository context, inference lifecycle, artifact persistence, patch parsing, and test execution so each step can be reasoned about independently."],
+          ["Agent Roles", "The system models primary coder, synthesizer, and judge as separate responsibilities rather than a single generic prompt. That makes output review, repair, and acceptance more explicit."],
+          ["Validation Flow", "Generated artifacts move through patch parsing, pytest validation, safety checks, and repair loops before acceptance. Validation is part of the product surface, not a post-generation afterthought."],
+        ]
+      : project.name === "RepoMind AI"
+        ? [
+            ["Problem", project.problem],
+            ["Repository Intelligence", "RepoMind turns a repository into structured evidence: files, routes, dependencies, architecture layers, security findings, and cited answer context."],
+            ["AST Analysis", "Tree-sitter style parsing and static extraction make repository understanding more reliable than simple text chunking."],
+            ["RAG Pipeline", "The retrieval layer combines code chunks, embeddings, reranking, and cited context so answers stay grounded in repository evidence."],
+            ["Security Review", "Security review combines Bandit, Semgrep, and custom checks to surface practical code risks alongside architecture and technical debt."],
+            ["Architecture", project.architecture],
+          ]
+        : [
+            ["Problem", project.problem],
+            ["Architecture", project.architecture],
+            ["Expansion", "This slot is structured for future AI infrastructure systems without changing the portfolio architecture."],
+          ];
+
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/80 px-3 py-3 backdrop-blur-2xl sm:items-center sm:px-6"
@@ -51,7 +75,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#070a10]/90 px-5 py-4 backdrop-blur-xl sm:px-7">
+        <div className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-[#070a10]/90 px-5 py-4 backdrop-blur-xl sm:px-7">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-signal">{project.label}</p>
             <h3 className="mt-1 text-2xl font-semibold text-white">{project.name}</h3>
@@ -71,47 +95,71 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           </div>
         </div>
 
-        <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.12fr_0.88fr]">
-          <div className="space-y-4">
-            <div className="grid gap-3">
-              {project.gallery.slice(0, 3).map((image, index) => (
+        <div className="p-5 sm:p-7">
+          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-signal">Case study</p>
+              <h4 className="mt-3 text-4xl font-black uppercase leading-[0.9] text-white sm:text-6xl">{project.name}</h4>
+              <p className="mt-5 text-sm leading-7 text-slate-300">{project.problem}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-slate-300">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Image
+              src={asset(project.gallery[0])}
+              alt={`${project.name} primary screenshot`}
+              width={1440}
+              height={900}
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="aspect-[16/10] rounded-2xl border border-white/10 object-cover shadow-[0_30px_120px_rgba(0,0,0,0.45)]"
+              priority
+            />
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <ArchitectureStack project={project} />
+            <div className="grid gap-3 md:grid-cols-2">
+              {sections.map(([title, body]) => (
+                <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
+                  <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">
+                    {title.includes("Security") ? <ShieldCheck className="h-4 w-4 text-signal" /> : <Cpu className="h-4 w-4 text-signal" />}
+                    {title}
+                  </div>
+                  <p className="text-sm leading-7 text-slate-300">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">Screenshots</div>
+            <div className="grid gap-3 md:grid-cols-2">
+              {project.gallery.slice(0, 4).map((image, index) => (
                 <Image
                   key={image}
                   src={asset(image)}
                   alt={`${project.name} screenshot ${index + 1}`}
                   width={1440}
                   height={900}
-                  sizes="(max-width: 1024px) 100vw, 56vw"
+                  sizes="(max-width: 1024px) 100vw, 46vw"
                   className="aspect-[16/9] rounded-2xl border border-white/10 object-cover"
-                  priority={index === 0}
                 />
               ))}
             </div>
           </div>
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-              <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                <Cpu className="h-4 w-4 text-signal" /> Technical overview
-              </div>
-              <p className="text-sm leading-7 text-slate-300">{project.architecture}</p>
-            </div>
-            <ArchitectureStack project={project} />
-            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">Design decisions</div>
-              <div className="mt-4 space-y-3">
-                {project.lessons.map((lesson) => (
-                  <div key={lesson} className="flex gap-3 text-sm leading-6 text-slate-300">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-signal" />
-                    <span>{lesson}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-slate-300">
-                  {item}
-                </span>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.035] p-5">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">Engineering decisions</div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {project.lessons.map((lesson) => (
+                <div key={lesson} className="flex gap-3 text-sm leading-6 text-slate-300">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-signal" />
+                  <span>{lesson}</span>
+                </div>
               ))}
             </div>
           </div>
@@ -140,7 +188,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
             height={900}
             sizes={flagship ? "(max-width: 1024px) 100vw, 52vw" : "(max-width: 1024px) 100vw, 33vw"}
             className="aspect-[16/10] w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.045] group-hover:opacity-100"
-            priority={flagship}
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
           <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/65 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200 backdrop-blur">

@@ -5,7 +5,6 @@ import { contributionDays } from "@/lib/portfolio-data";
 
 type GithubRepo = {
   name: string;
-  stargazers_count: number;
   html_url: string;
   language: string | null;
 };
@@ -35,7 +34,6 @@ export function GithubSignal() {
     load();
   }, []);
 
-  const stars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
   const fallbackEvents: GithubEvent[] = [
     { type: "PullRequestEvent", repo: { name: "run-llama/llama_index" } },
     { type: "PullRequestEvent", repo: { name: "BerriAI/litellm" } },
@@ -47,7 +45,7 @@ export function GithubSignal() {
     <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
       <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
         <div className="grid grid-cols-3 gap-3">
-          {[["Repos", repos.length || 34], ["Stars", stars], ["OSS", 4]].map(([label, value]) => (
+          {[["Repositories", repos.length || 34], ["OSS PRs", 4], ["Contrib Days", contributionDays.filter(Boolean).length]].map(([label, value]) => (
             <div key={label} className="rounded-2xl bg-black/25 p-4 text-center">
               <div className="text-3xl font-semibold text-white">{value}</div>
               <div className="mt-1 text-xs text-slate-500">{label}</div>
@@ -65,6 +63,7 @@ export function GithubSignal() {
         </div>
       </div>
       <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-5">
+        <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">Recent engineering activity</div>
         <div className="grid gap-3 md:grid-cols-2">
           {(events.length ? events.slice(0, 4) : fallbackEvents).map((event, index) => (
             <div key={`${event.repo.name}-${index}`} className="rounded-2xl border border-white/10 bg-black/25 p-4">

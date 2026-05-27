@@ -1,0 +1,80 @@
+{
+  "imageResponses": [
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/dashboard-overview.png",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/dashboard-overview.png",
+      "status": 304
+    }
+  ],
+  "imagesAfterScroll": [
+    {
+      "alt": "Ratish Oberoi",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "naturalWidth": 540,
+      "naturalHeight": 1200,
+      "complete": true
+    },
+    {
+      "alt": "Forge product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "naturalWidth": 1920,
+      "naturalHeight": 1080,
+      "complete": true
+    },
+    {
+      "alt": "RepoMind AI product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "naturalWidth": 1440,
+      "naturalHeight": 1000,
+      "complete": true
+    },
+    {
+      "alt": "Future AI Systems product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/dashboard-overview.png",
+      "naturalWidth": 1440,
+      "naturalHeight": 1000,
+      "complete": true
+    },
+    {
+      "alt": "Forge primary screenshot",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "naturalWidth": 1920,
+      "naturalHeight": 1080,
+      "complete": true
+    },
+    {
+      "alt": "Forge screenshot 1",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "naturalWidth": 1920,
+      "naturalHeight": 1080,
+      "complete": true
+    }
+  ]
+}

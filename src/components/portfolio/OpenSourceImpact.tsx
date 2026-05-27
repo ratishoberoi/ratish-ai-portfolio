@@ -21,15 +21,21 @@ export function OpenSourceImpact() {
             <div className={`grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br ${item.color} text-sm font-black text-ink`}>
               {item.logo}
             </div>
-            <ArrowUpRight className="h-5 w-5 text-slate-500 transition group-hover:rotate-12 group-hover:text-white" />
+            <div className="flex items-center gap-2">
+              <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${item.status.toLowerCase().includes("merged") ? "border-signal/30 text-signal" : "border-amber/30 text-amber"}`}>
+                {item.status}
+              </span>
+              <ArrowUpRight className="h-5 w-5 text-slate-500 transition group-hover:rotate-12 group-hover:text-white" />
+            </div>
           </div>
           <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
             <GitPullRequest className="h-4 w-4" /> {item.issue}
           </div>
           <h3 className="mt-3 text-xl font-semibold text-white">{item.repo}</h3>
+          <p className="mt-1 text-xs text-slate-500">{item.owner}</p>
           <p className="mt-3 min-h-[72px] text-sm leading-6 text-slate-400">{item.title}</p>
           <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-xs text-slate-500">
-            <span>{item.status}</span>
+            <span>{item.date}</span>
             <span>0{index + 1}</span>
           </div>
         </motion.a>
