@@ -4,17 +4,18 @@ Generated locally on 2026-05-27.
 
 ## CTO Score
 
-Score: 9.1/10
+Score: 9.3/10
 
 ## CTO Perspective
 
-The redesigned portfolio now reads as an AI infrastructure builder's site rather than a resume page. The first viewport communicates AI Infrastructure Engineer, Ex-CTO, ₹1Cr+ fundraise, Forge creator, and open-source contributor without requiring deep scrolling.
+The redesigned portfolio now reads as an AI infrastructure product surface rather than a resume page. The first viewport communicates AI Infrastructure Engineer, Ex-CTO, ₹1Cr+ fundraise, Forge creator, and open-source contributor without requiring deep scrolling.
 
 ## Technical Signal
 
-- Forge presents credible infrastructure depth: local model serving, runtime swapping, repository intelligence, agent orchestration, patch execution, and validation loops.
-- RepoMind AI demonstrates applied RAG, AST analysis, security review, repository intelligence, and cited answers.
+- Forge presents credible infrastructure depth through a frontend-only simulator: objective execution, repository analysis, model routing, patch generation, validation, and judge verdict.
+- RepoMind AI demonstrates applied RAG and repository intelligence through AST parsing, embedding generation, architecture generation, security findings, and CTO summary.
 - The expertise section maps to practical AI platform work: vLLM, model routing, LLMOps, RAG, backend, DevOps, vector stores, and security review.
+- Terminal Mode gives technical visitors a fast, command-driven way to inspect projects, skills, OSS work, contact details, Forge, and RepoMind.
 
 ## Hiring Signal
 

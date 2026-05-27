@@ -4,21 +4,21 @@ Generated locally on 2026-05-27.
 
 ## Recruiter Perspective
 
-Score: 9.1/10
+Score: 9.3/10
 
-The page now communicates the role immediately: AI Infrastructure Engineer, Ex-CTO, ₹1Cr+ fundraise, open-source contributor, and builder of production AI systems. The hero is concise, the photo adds trust, and projects are easier to scan.
+The page communicates the role immediately: AI Infrastructure Engineer, Ex-CTO, ₹1Cr+ fundraise, open-source contributor, and Forge creator. The reduced hero copy, photo, proof chips, and simulator-first layout make the site feel more memorable than a standard resume page.
 
 ## CTO Perspective
 
-Score: 9.0/10
+Score: 9.2/10
 
-Forge and RepoMind AI show credible systems depth: local inference, runtime swapping, repository intelligence, RAG, AST analysis, validation loops, security review, and backend infrastructure.
+Forge and RepoMind AI show credible systems depth through interaction, not just description: repository analysis, model routing, patch generation, validation, AST parsing, embeddings, architecture generation, and security review.
 
 ## AI Engineer Perspective
 
-Score: 9.0/10
+Score: 9.2/10
 
-The portfolio demonstrates practical infrastructure work rather than generic app development. The technical expertise section maps directly to AI systems, agent systems, RAG, backend, ML, infra, and security.
+The portfolio demonstrates practical infrastructure judgment rather than generic app development. Terminal Mode, the mode-aware assistant, and simulator steps make the backend and AI systems signal more concrete.
 
 ## Open Source Maintainer Perspective
 
