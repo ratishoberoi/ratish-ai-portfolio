@@ -1,0 +1,192 @@
+{
+  "imageResponses": [
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/veritas-rag/repository-preview.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/smile-ai-scheduler/repository-preview.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/profile-readme/repository-preview.svg",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/veritas-rag/repository-preview.svg",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/smile-ai-scheduler/repository-preview.svg",
+      "status": 304
+    },
+    {
+      "url": "http://localhost:4174/ratish-ai-portfolio/screenshots/profile-readme/repository-preview.svg",
+      "status": 304
+    }
+  ],
+  "apiResponses": [
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/forge",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/Veritas-RAG",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/forge",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/Veritas-RAG",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/ratishoberoi",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/ratishoberoi",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/RepoMindAI",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/RepoMindAI",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/SMILE-AI-SCHEDULER",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/SMILE-AI-SCHEDULER",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/forge",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/RepoMindAI",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/Veritas-RAG",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/SMILE-AI-SCHEDULER",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/forge",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/ratishoberoi",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/RepoMindAI",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/Veritas-RAG",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/SMILE-AI-SCHEDULER",
+      "status": 200
+    },
+    {
+      "url": "https://api.github.com/repos/ratishoberoi/ratishoberoi",
+      "status": 200
+    }
+  ],
+  "images": [
+    {
+      "alt": "Ratish Oberoi",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/profile/ratish-oberoi.jpg",
+      "naturalWidth": 540,
+      "naturalHeight": 1200,
+      "complete": true
+    },
+    {
+      "alt": "Forge product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/forge/control-center.png",
+      "naturalWidth": 1920,
+      "naturalHeight": 1080,
+      "complete": true
+    },
+    {
+      "alt": "RepoMind AI product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/repomind/architecture-view.png",
+      "naturalWidth": 1440,
+      "naturalHeight": 1000,
+      "complete": true
+    },
+    {
+      "alt": "Veritas RAG product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/veritas-rag/repository-preview.svg",
+      "naturalWidth": 1440,
+      "naturalHeight": 900,
+      "complete": true
+    },
+    {
+      "alt": "Smile AI Scheduler product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/smile-ai-scheduler/repository-preview.svg",
+      "naturalWidth": 1440,
+      "naturalHeight": 900,
+      "complete": true
+    },
+    {
+      "alt": "GitHub Profile README product surface",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/profile-readme/repository-preview.svg",
+      "naturalWidth": 1440,
+      "naturalHeight": 900,
+      "complete": true
+    },
+    {
+      "alt": "Veritas RAG primary screenshot",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/veritas-rag/repository-preview.svg",
+      "naturalWidth": 1440,
+      "naturalHeight": 900,
+      "complete": true
+    },
+    {
+      "alt": "Veritas RAG screenshot 1",
+      "currentSrc": "http://localhost:4174/ratish-ai-portfolio/screenshots/veritas-rag/repository-preview.svg",
+      "naturalWidth": 1440,
+      "naturalHeight": 900,
+      "complete": true
+    }
+  ]
+}

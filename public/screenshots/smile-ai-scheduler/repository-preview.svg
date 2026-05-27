@@ -1,0 +1,24 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="900" fill="#070A10"/>
+  <rect x="48" y="48" width="1344" height="804" rx="28" fill="#0B1018" stroke="rgba(255,255,255,0.12)"/>
+  <text x="88" y="118" fill="#79FFE1" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="4">GITHUB REPOSITORY</text>
+  <text x="88" y="190" fill="#F8FAFC" font-family="Inter, Arial" font-size="72" font-weight="800">SMILE-AI-SCHEDULER</text>
+  <text x="88" y="244" fill="#94A3B8" font-family="Inter, Arial" font-size="28">AI-assisted scheduling workflow</text>
+  <rect x="88" y="316" width="280" height="82" rx="16" fill="rgba(121,255,225,0.08)" stroke="rgba(121,255,225,0.28)"/>
+  <text x="116" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">TypeScript</text>
+  <rect x="392" y="316" width="280" height="82" rx="16" fill="rgba(106,167,255,0.08)" stroke="rgba(106,167,255,0.28)"/>
+  <text x="420" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">Scheduling</text>
+  <rect x="696" y="316" width="280" height="82" rx="16" fill="rgba(255,122,144,0.08)" stroke="rgba(255,122,144,0.28)"/>
+  <text x="724" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">AI Workflow</text>
+  <g>
+    <rect x="148" y="510" width="1144" height="220" rx="24" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="200" y="570" width="180" height="96" rx="18" fill="rgba(121,255,225,0.11)" stroke="rgba(121,255,225,0.45)"/>
+    <text x="244" y="628" fill="#79FFE1" font-family="Inter, Arial" font-size="22" font-weight="700">Intent</text>
+    <rect x="474" y="570" width="180" height="96" rx="18" fill="rgba(106,167,255,0.11)" stroke="rgba(106,167,255,0.45)"/>
+    <text x="520" y="628" fill="#6AA7FF" font-family="Inter, Arial" font-size="22" font-weight="700">Plan</text>
+    <rect x="748" y="570" width="180" height="96" rx="18" fill="rgba(245,199,107,0.11)" stroke="rgba(245,199,107,0.45)"/>
+    <text x="782" y="628" fill="#F5C76B" font-family="Inter, Arial" font-size="22" font-weight="700">Constraints</text>
+    <rect x="1022" y="570" width="180" height="96" rx="18" fill="rgba(255,122,144,0.11)" stroke="rgba(255,122,144,0.45)"/>
+    <text x="1062" y="628" fill="#FF7A90" font-family="Inter, Arial" font-size="22" font-weight="700">Schedule</text>
+  </g>
+</svg>

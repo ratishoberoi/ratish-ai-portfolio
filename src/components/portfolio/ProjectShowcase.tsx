@@ -3,11 +3,56 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, Cpu, Layers3, ShieldCheck, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Project } from "@/lib/portfolio-data";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const asset = (path: string) => `${basePath}${path}`;
+const imageSrc = (path: string) => (path.startsWith("http") ? path : asset(path));
+
+type RepoMeta = {
+  name: string;
+  description: string | null;
+  html_url: string;
+  pushed_at: string;
+  updated_at: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
+};
+
+function RepoMetaBar({ meta }: { meta?: RepoMeta }) {
+  if (!meta) return null;
+  return (
+    <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-400">
+      <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1.5">{meta.language || "Repository"}</span>
+      <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1.5">
+        Updated {new Date(meta.pushed_at || meta.updated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+      </span>
+    </div>
+  );
+}
+
+function ProjectImage({
+  src,
+  alt,
+  className,
+  priority,
+  sizes,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+  priority?: boolean;
+  sizes?: string;
+}) {
+  const resolved = imageSrc(src);
+  if (resolved.startsWith("http")) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={resolved} alt={alt} className={className} loading={priority ? "eager" : "lazy"} draggable={false} />;
+  }
+  return <Image src={resolved} alt={alt} width={1440} height={900} sizes={sizes} className={className} priority={priority} />;
+}
 
 function ArchitectureStack({ project }: { project: Project }) {
   const steps =
@@ -34,7 +79,7 @@ function ArchitectureStack({ project }: { project: Project }) {
   );
 }
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+function ProjectModal({ project, meta, onClose }: { project: Project; meta?: RepoMeta; onClose: () => void }) {
   const sections =
     project.name === "Forge"
       ? [
@@ -101,6 +146,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-signal">Case study</p>
               <h4 className="mt-3 text-4xl font-black uppercase leading-[0.9] text-white sm:text-6xl">{project.name}</h4>
               <p className="mt-5 text-sm leading-7 text-slate-300">{project.problem}</p>
+              <RepoMetaBar meta={meta} />
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.stack.map((item) => (
                   <span key={item} className="rounded-full border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-slate-300">
@@ -109,11 +155,9 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 ))}
               </div>
             </div>
-            <Image
-              src={asset(project.gallery[0])}
+            <ProjectImage
+              src={project.gallery[0]}
               alt={`${project.name} primary screenshot`}
-              width={1440}
-              height={900}
               sizes="(max-width: 1024px) 100vw, 54vw"
               className="aspect-[16/10] rounded-2xl border border-white/10 object-cover shadow-[0_30px_120px_rgba(0,0,0,0.45)]"
               priority
@@ -139,12 +183,10 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">Screenshots</div>
             <div className="grid gap-3 md:grid-cols-2">
               {project.gallery.slice(0, 4).map((image, index) => (
-                <Image
+                <ProjectImage
                   key={image}
-                  src={asset(image)}
+                  src={image}
                   alt={`${project.name} screenshot ${index + 1}`}
-                  width={1440}
-                  height={900}
                   sizes="(max-width: 1024px) 100vw, 46vw"
                   className="aspect-[16/9] rounded-2xl border border-white/10 object-cover"
                 />
@@ -169,8 +211,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   );
 }
 
-function ProjectCard({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
-  const flagship = index === 0;
+function ProjectCard({ project, index, meta, onOpen }: { project: Project; index: number; meta?: RepoMeta; onOpen: () => void }) {
+  const flagship = index === 0 || index === 1;
 
   return (
     <motion.button
@@ -181,11 +223,9 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
     >
       <div className={flagship ? "grid lg:grid-cols-[1.15fr_0.85fr]" : ""}>
         <div className="relative overflow-hidden">
-          <Image
-            src={asset(project.image)}
+          <ProjectImage
+            src={project.image}
             alt={`${project.name} product surface`}
-            width={1440}
-            height={900}
             sizes={flagship ? "(max-width: 1024px) 100vw, 52vw" : "(max-width: 1024px) 100vw, 33vw"}
             className="aspect-[16/10] w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.045] group-hover:opacity-100"
             priority
@@ -200,7 +240,8 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">0{index + 1}</div>
               <h3 className="mt-3 text-3xl font-semibold text-white">{project.name}</h3>
-              <p className="mt-3 max-w-md text-sm leading-6 text-slate-400">{project.summary}</p>
+              <p className="mt-3 max-w-md text-sm leading-6 text-slate-300">{project.impact}</p>
+              <RepoMetaBar meta={meta} />
             </div>
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/10 text-slate-300 transition group-hover:border-signal/50 group-hover:text-signal">
               <ArrowUpRight className="h-5 w-5" />
@@ -228,15 +269,34 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
 
 export function ProjectShowcase({ projects }: { projects: Project[] }) {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [repoMeta, setRepoMeta] = useState<Record<string, RepoMeta>>({});
+
+  useEffect(() => {
+    async function loadRepos() {
+      const entries = await Promise.all(
+        projects.map(async (project) => {
+          try {
+            const response = await fetch(`https://api.github.com/repos/ratishoberoi/${project.repo}`);
+            if (!response.ok) return null;
+            return [project.repo, (await response.json()) as RepoMeta] as const;
+          } catch {
+            return null;
+          }
+        }),
+      );
+      setRepoMeta(Object.fromEntries(entries.filter(Boolean) as Array<readonly [string, RepoMeta]>));
+    }
+    loadRepos();
+  }, [projects]);
 
   return (
     <>
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 lg:grid-cols-4">
         {projects.map((project, index) => (
-          <ProjectCard key={project.name} project={project} index={index} onOpen={() => setActiveProject(project)} />
+          <ProjectCard key={project.name} project={project} index={index} meta={repoMeta[project.repo]} onOpen={() => setActiveProject(project)} />
         ))}
       </div>
-      <AnimatePresence>{activeProject ? <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} /> : null}</AnimatePresence>
+      <AnimatePresence>{activeProject ? <ProjectModal project={activeProject} meta={repoMeta[activeProject.repo]} onClose={() => setActiveProject(null)} /> : null}</AnimatePresence>
     </>
   );
 }

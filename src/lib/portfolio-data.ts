@@ -2,6 +2,7 @@ export type Project = {
   name: string;
   repo: string;
   label: string;
+  impact: string;
   summary: string;
   image: string;
   gallery: string[];
@@ -15,6 +16,14 @@ export type Project = {
   lessons: string[];
   diagrams: { title: string; chart: string }[];
 };
+
+export const veritasRagDiagram = `flowchart TD
+  Query[User Query] --> Retrieve[Retriever]
+  Retrieve --> Vector[Vector Search]
+  Retrieve --> Context[Context Assembly]
+  Context --> Generate[LLM Answer]
+  Generate --> Verify[Grounding Check]
+  Verify --> Response[Cited Response]`;
 
 export const forgeArchitectureDiagram = `flowchart TD
   Operator[Operator Objective] --> Control[Forge Control Center]
@@ -85,7 +94,8 @@ export const projects: Project[] = [
   {
     name: "Forge",
     repo: "forge",
-    label: "Flagship AI infrastructure",
+    label: "Self-Coding Agent",
+    impact: "Built a local-first autonomous engineering runtime around repository intelligence, agent roles, patch generation, and validation.",
     summary: "Local-first autonomous engineering runtime for repository work.",
     image: "/screenshots/forge/control-center.png",
     gallery: ["/screenshots/forge/control-center.png"],
@@ -117,6 +127,7 @@ export const projects: Project[] = [
     name: "RepoMind AI",
     repo: "RepoMindAI",
     label: "Repository intelligence",
+    impact: "Built an offline repository intelligence platform for AST analysis, architecture extraction, RAG, security review, and cited repository chat.",
     summary: "Offline repository analysis, RAG, security review, and cited chat.",
     image: "/screenshots/repomind/architecture-view.png",
     gallery: [
@@ -150,22 +161,61 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: "Future AI Systems",
-    repo: "future-ai-systems",
-    label: "Expansion pipeline",
-    summary: "Reserved for upcoming production AI infrastructure work.",
-    image: "/screenshots/repomind/dashboard-overview.png",
-    gallery: ["/screenshots/repomind/dashboard-overview.png"],
-    github: "https://github.com/ratishoberoi",
-    capabilities: ["Model serving", "AI security", "RAG platforms", "Agent tooling"],
-    stack: ["PyTorch", "Docker", "Kubernetes", "PostgreSQL", "Redis"],
+    name: "Veritas RAG",
+    repo: "Veritas-RAG",
+    label: "RAG system",
+    impact: "Built a retrieval-augmented generation project focused on grounded answers and a practical RAG pipeline.",
+    summary: "RAG pipeline for retrieval, context assembly, answer generation, and verification.",
+    image: "/screenshots/veritas-rag/repository-preview.svg",
+    gallery: ["/screenshots/veritas-rag/repository-preview.svg"],
+    github: "https://github.com/ratishoberoi/Veritas-RAG",
+    capabilities: ["Retrieval pipeline", "Context assembly", "Grounded answers", "Verification flow"],
+    stack: ["Python", "RAG", "Embeddings", "LLM"],
     problem:
-      "A forward slot for production systems that extend Ratish's work across model-serving infrastructure, secure AI platforms, domain RAG, and backend automation.",
+      "RAG systems need more than model calls. They need retrieval, context selection, answer grounding, and clear evidence flow.",
     architecture:
-      "Designed as a portfolio module that can accept future systems without changing the page architecture.",
-    features: ["Project-ready content model.", "Modal-ready gallery.", "Stack and capability metadata.", "GitHub-first expansion path."],
-    lessons: ["Keep portfolio architecture extensible.", "Avoid redesigning for every new project.", "Let new artifacts carry the proof."],
-    diagrams: [{ title: "Future system slot", chart: "flowchart LR\n  Idea[AI System] --> Infra[Infrastructure]\n  Infra --> Eval[Validation]\n  Eval --> OSS[Open Source]" }],
+      "Veritas RAG is represented as a retrieval pipeline: query, retrieval, vector/context selection, generation, grounding check, and final response.",
+    features: ["Repository-backed RAG project.", "Retrieval and answer-generation flow.", "Designed for grounded responses.", "Public GitHub repository."],
+    lessons: ["RAG quality depends on retrieval quality.", "Context assembly is an infrastructure problem.", "Verification should be visible in the system design."],
+    diagrams: [{ title: "Veritas RAG pipeline", chart: veritasRagDiagram }],
+  },
+  {
+    name: "Smile AI Scheduler",
+    repo: "SMILE-AI-SCHEDULER",
+    label: "AI scheduling product",
+    impact: "Built a TypeScript scheduling project that connects product workflow thinking with AI-assisted planning.",
+    summary: "AI scheduling workflow project with product-oriented UI and planning flow.",
+    image: "/screenshots/smile-ai-scheduler/repository-preview.svg",
+    gallery: ["/screenshots/smile-ai-scheduler/repository-preview.svg"],
+    github: "https://github.com/ratishoberoi/SMILE-AI-SCHEDULER",
+    capabilities: ["Scheduling workflow", "TypeScript app", "Planning interface", "Product execution"],
+    stack: ["TypeScript", "React", "Scheduling", "AI Workflow"],
+    problem:
+      "Scheduling products need clear workflows, state, and user-facing planning logic rather than only a model prompt.",
+    architecture:
+      "Smile AI Scheduler is represented as a product workflow project: user scheduling intent, planning state, availability logic, and final scheduling output.",
+    features: ["Public GitHub repository.", "TypeScript implementation.", "Scheduling-oriented workflow.", "Product execution signal."],
+    lessons: ["Useful AI products need workflow state.", "Scheduling requires constraints and clear user feedback.", "Product polish matters for AI-assisted utilities."],
+    diagrams: [{ title: "Scheduling workflow", chart: "flowchart LR\n  Intent[Scheduling Intent] --> State[Planning State]\n  State --> Constraints[Constraints]\n  Constraints --> Output[Schedule Output]" }],
+  },
+  {
+    name: "GitHub Profile README",
+    repo: "ratishoberoi",
+    label: "Developer profile",
+    impact: "Maintained a public GitHub profile README that gives recruiters and maintainers a direct view of projects, OSS activity, and engineering focus.",
+    summary: "Public GitHub profile README for project proof and developer positioning.",
+    image: "/screenshots/profile-readme/repository-preview.svg",
+    gallery: ["/screenshots/profile-readme/repository-preview.svg"],
+    github: "https://github.com/ratishoberoi/ratishoberoi",
+    capabilities: ["Profile README", "Project indexing", "OSS signal", "Recruiter entry point"],
+    stack: ["Markdown", "GitHub", "JavaScript"],
+    problem:
+      "A GitHub profile should quickly explain current work, proof of execution, and the repositories that matter.",
+    architecture:
+      "The profile repository acts as a public index for Ratish's engineering work, linking active repositories and presenting the strongest project signals.",
+    features: ["Public profile README.", "Direct GitHub entry point.", "Project discoverability.", "Portfolio support asset."],
+    lessons: ["Profile pages should point to proof.", "GitHub positioning matters for OSS discovery.", "A portfolio and README should reinforce each other."],
+    diagrams: [{ title: "Profile flow", chart: "flowchart LR\n  Visitor[Visitor] --> README[Profile README]\n  README --> Projects[Projects]\n  README --> OSS[OSS Work]\n  README --> Contact[Contact]" }],
   },
 ];
 

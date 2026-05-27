@@ -31,28 +31,12 @@ const architectures: ArchitectureCard[] = [
     details: ["Extracts structure before retrieval.", "Keeps architecture and security views connected to code evidence.", "Supports offline repository understanding."],
   },
   {
-    title: "RAG Retrieval Flow",
+    title: "Veritas RAG Pipeline",
     label: "RAG",
-    description: "Hybrid retrieval path combining semantic embeddings, lexical search, reranking, and cited evidence assembly.",
-    nodes: ["Question", "Intent", "Vector", "BM25", "Rerank", "Evidence", "Answer"],
-    edges: [[0, 1], [1, 2], [1, 3], [2, 4], [3, 4], [4, 5], [5, 6]],
-    details: ["Retrieval is treated as infrastructure, not prompt decoration.", "Evidence is assembled before generation.", "Reranking keeps code paths and citations usable."],
-  },
-  {
-    title: "Agent Validation Loop",
-    label: "Agents",
-    description: "Primary coder, synthesizer, judge, patch parser, tests, and repair loop for autonomous engineering work.",
-    nodes: ["Plan", "Coder", "Synth", "Judge", "Patch", "Tests", "Repair"],
-    edges: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 1]],
-    details: ["Agent roles are explicit rather than a single generic chat loop.", "Judge output gates accepted artifacts.", "Failed validation returns to repair with structured context."],
-  },
-  {
-    title: "Repository Intelligence Flow",
-    label: "Code Understanding",
-    description: "Tree-sitter parsing, symbol extraction, route discovery, dependency mapping, and architecture rendering.",
-    nodes: ["Files", "Tree-sitter", "Symbols", "Routes", "Deps", "Graph", "Security"],
-    edges: [[0, 1], [1, 2], [1, 3], [2, 5], [3, 5], [4, 5], [5, 6]],
-    details: ["Turns repositories into queryable engineering evidence.", "Connects static analysis with AI-generated summaries.", "Supports security review and CTO-level architecture views."],
+    description: "RAG path for query intake, retrieval, context assembly, generation, grounding, and response.",
+    nodes: ["Query", "Retriever", "Vector", "Context", "Generate", "Verify", "Response"],
+    edges: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]],
+    details: ["Shows Veritas as a retrieval pipeline rather than a generic AI app.", "Grounding and verification are explicit stages.", "Supports the project section without duplicating every architecture concept."],
   },
 ];
 

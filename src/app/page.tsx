@@ -5,7 +5,7 @@ import { ArrowUpRight, Mail, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArchitectureGallery } from "@/components/portfolio/ArchitectureGallery";
-import { ExpertiseClusters } from "@/components/portfolio/ExpertiseClusters";
+import { CodingProfiles } from "@/components/portfolio/CodingProfiles";
 import { FadeReveal } from "@/components/portfolio/FadeReveal";
 import { GithubSignal } from "@/components/portfolio/GithubSignal";
 import { InfrastructureConstellation } from "@/components/portfolio/InfrastructureConstellation";
@@ -36,7 +36,7 @@ export default function Home() {
             Ratish Oberoi
           </a>
           <div className="hidden items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400 md:flex">
-            {["Systems", "Architecture", "Projects", "Expertise", "OSS", "Contact"].map((item) => (
+            {["Projects", "GitHub", "OSS", "Profiles", "Architecture", "Contact"].map((item) => (
               <a key={item} href={`#${item.toLowerCase()}`} className="transition hover:text-white">
                 {item}
               </a>
@@ -61,8 +61,8 @@ export default function Home() {
               Ratish Oberoi designs repository intelligence, RAG systems, model-serving runtimes, validation loops, and agent architectures for software engineering workflows.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#systems" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
-                Explore systems <ArrowUpRight className="h-4 w-4" />
+              <a href="#projects" className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-ink">
+                View projects <ArrowUpRight className="h-4 w-4" />
               </a>
               <a href="https://github.com/ratishoberoi" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white">
                 GitHub <ArrowUpRight className="h-4 w-4" />
@@ -92,55 +92,25 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section id="systems" className="relative z-10 rounded-t-[3rem] border-t border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
+      <section id="projects" className="relative z-10 rounded-t-[3rem] border-t border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Systems view" title="Architecture before tool names.">
-            The portfolio is organized around concrete system surfaces: runtime, retrieval, repository context, validation, and open-source proof.
-          </SectionHeading>
-          <div className="grid gap-5 lg:grid-cols-4">
-            {[
-              ["Runtime", "vLLM, model routing, local inference lifecycle."],
-              ["Repository intelligence", "Tree-sitter, AST facts, dependency and architecture views."],
-              ["Retrieval", "Qdrant, BM25, embeddings, reranking, cited context."],
-              ["Validation", "Patch parsing, tests, security checks, judge verdicts."],
-            ].map(([title, detail]) => (
-              <motion.div key={title} whileHover={{ y: -6 }} className="min-h-48 rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_100px_rgba(0,0,0,0.24)]">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.28em] text-signal">{title}</div>
-                  <p className="mt-8 text-lg leading-7 text-slate-200">{detail}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="architecture" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Architecture gallery" title="Show the engineering thinking.">
-            Expandable architecture cards for Forge runtime design, RepoMind pipeline design, RAG retrieval, agent validation, and repository intelligence.
-          </SectionHeading>
-          <ArchitectureGallery />
-        </div>
-      </section>
-
-      <section id="projects" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Case studies" title="Forge and RepoMind as systems.">
-            Premium case studies with architecture-first modals, large screenshots, design decisions, and direct GitHub links.
+          <SectionHeading kicker="Featured projects" title="Real projects first.">
+            Five public projects with screenshots, impact statements, GitHub links, live repository metadata, and case-study modals.
           </SectionHeading>
           <ProjectShowcase projects={projects} />
         </div>
       </section>
 
-      <section id="expertise" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-white/[0.03] px-5 py-24 sm:px-8 lg:py-32">
+      <section id="github" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="Infrastructure domains" title="Engineering clusters, not tool lists.">
-            Each domain is framed around the system responsibility it supports, not just the technologies involved.
+          <SectionHeading kicker="GitHub activity" title="What is currently active.">
+            Latest repositories and update timestamps for Forge, RepoMindAI, Veritas RAG, Smile AI Scheduler, and the profile README.
           </SectionHeading>
-          <ExpertiseClusters />
+          <GithubSignal />
         </div>
       </section>
 
-      <section id="oss" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
+      <section id="oss" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-white/[0.03] px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <SectionHeading kicker="Open source" title="Contribution signal.">
             Verified PR status is shown accurately: active open PRs are labeled as open, and the merged OpenClaw work is labeled merged.
@@ -149,12 +119,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="github" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
+      <section id="profiles" className="relative z-10 px-5 py-24 sm:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading kicker="GitHub activity" title="Build signal, not vanity metrics.">
-            Repositories, OSS contributions, contribution density, and public engineering activity are fetched from GitHub with local fallbacks.
+          <SectionHeading kicker="Coding profiles" title="Where to verify the work.">
+            Direct links for recruiters and technical reviewers.
           </SectionHeading>
-          <GithubSignal />
+          <CodingProfiles />
+        </div>
+      </section>
+
+      <section id="architecture" className="relative z-10 rounded-[3rem] border-y border-white/10 bg-[#080b11]/95 px-5 py-24 sm:px-8 lg:py-32">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading kicker="Architecture case studies" title="Architecture supports the projects.">
+            Kept intentionally focused: Forge runtime, RepoMind pipeline, and Veritas RAG pipeline.
+          </SectionHeading>
+          <ArchitectureGallery />
         </div>
       </section>
 

@@ -1,0 +1,24 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="900" fill="#070A10"/>
+  <rect x="48" y="48" width="1344" height="804" rx="28" fill="#0B1018" stroke="rgba(255,255,255,0.12)"/>
+  <text x="88" y="118" fill="#79FFE1" font-family="Inter, Arial" font-size="18" font-weight="700" letter-spacing="4">GITHUB PROFILE REPOSITORY</text>
+  <text x="88" y="190" fill="#F8FAFC" font-family="Inter, Arial" font-size="72" font-weight="800">ratishoberoi</text>
+  <text x="88" y="244" fill="#94A3B8" font-family="Inter, Arial" font-size="28">Profile README for projects, OSS proof, and engineering focus</text>
+  <rect x="88" y="316" width="280" height="82" rx="16" fill="rgba(121,255,225,0.08)" stroke="rgba(121,255,225,0.28)"/>
+  <text x="116" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">JavaScript</text>
+  <rect x="392" y="316" width="280" height="82" rx="16" fill="rgba(106,167,255,0.08)" stroke="rgba(106,167,255,0.28)"/>
+  <text x="420" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">Profile README</text>
+  <rect x="696" y="316" width="280" height="82" rx="16" fill="rgba(255,122,144,0.08)" stroke="rgba(255,122,144,0.28)"/>
+  <text x="724" y="365" fill="#D7E2EA" font-family="Inter, Arial" font-size="24">Project Index</text>
+  <g>
+    <rect x="150" y="500" width="1140" height="260" rx="24" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>
+    <text x="210" y="570" fill="#F8FAFC" font-family="Inter, Arial" font-size="34" font-weight="800">Ratish Oberoi</text>
+    <text x="210" y="620" fill="#94A3B8" font-family="Inter, Arial" font-size="24">AI Infrastructure Engineer | Forge | RepoMind AI | OSS</text>
+    <rect x="210" y="665" width="220" height="42" rx="21" fill="rgba(121,255,225,0.12)" stroke="rgba(121,255,225,0.35)"/>
+    <text x="245" y="694" fill="#79FFE1" font-family="Inter, Arial" font-size="18" font-weight="700">Projects</text>
+    <rect x="455" y="665" width="220" height="42" rx="21" fill="rgba(121,255,225,0.12)" stroke="rgba(121,255,225,0.35)"/>
+    <text x="498" y="694" fill="#79FFE1" font-family="Inter, Arial" font-size="18" font-weight="700">OSS Work</text>
+    <rect x="700" y="665" width="220" height="42" rx="21" fill="rgba(121,255,225,0.12)" stroke="rgba(121,255,225,0.35)"/>
+    <text x="748" y="694" fill="#79FFE1" font-family="Inter, Arial" font-size="18" font-weight="700">Contact</text>
+  </g>
+</svg>
